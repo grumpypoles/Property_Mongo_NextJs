@@ -2,36 +2,19 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import logo from "@/app/_images/logo-white.png";
 import profileDefault from "@/app/_images/profile.png";
 import { FaGoogle } from "react-icons/fa";
-import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+
 
 function NavBar() {
-
-  const { data: session } = useSession();
-
-  const profileImage = session?.user?.image
-
-  // console.log(session)
-
-  
-
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-  const [providers, setProviders] = useState(null);
-  
-  const pathname = usePathname();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    const setAuthProviders = async () => {
-      const res = await getProviders();
-      setProviders(res);
-    };
-    setAuthProviders();
-  }, []);
+  const pathname = usePathname();
 
   return (
     <nav className="bg-blue-700 border-b border-blue-500">
@@ -94,7 +77,7 @@ function NavBar() {
                 >
                   Properties
                 </Link>
-                {session && (
+                {isLoggedIn && (
                   <Link
                     href="/properties/add"
                     className={`${
@@ -109,26 +92,19 @@ function NavBar() {
           </div>
 
           {/* <!-- Right Side Menu (Logged Out) --> */}
-          {!session && (
+          {!isLoggedIn && (
             <div className="hidden md:block md:ml-6">
               <div className="flex items-center">
-                {providers &&
-                  Object.values(providers).map((provider, index) => (
-                    <button
-                      key={index}
-                      onClick={() => signIn(provider.id)}
-                      className="flex items-center px-3 py-2 text-white bg-gray-700 rounded-md hover:bg-gray-900 hover:text-white"
-                    >
-                      <FaGoogle className="mr-2 text-white" />
-                      <span>Login or Register</span>
-                    </button>
-                  ))}
+                <button className="flex items-center px-3 py-2 text-white bg-gray-700 rounded-md hover:bg-gray-900 hover:text-white">
+                  <FaGoogle className="mr-2 text-white" />
+                  <span>Login or Register</span>
+                </button>
               </div>
             </div>
           )}
 
           {/* <!-- Right Side Menu (Logged In) --> */}
-          {session && (
+          {isLoggedIn && (
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
               <Link href="/messages" className="relative group">
                 <button
@@ -173,9 +149,7 @@ function NavBar() {
                     <span className="sr-only">Open user menu</span>
                     <Image
                       className="w-8 h-8 rounded-full"
-                      src={profileImage || profileDefault}
-                      width={40}
-                      height={40}
+                      src={profileDefault}
                       alt=""
                     />
                   </button>
@@ -212,10 +186,6 @@ function NavBar() {
                       role="menuitem"
                       tabIndex="-1"
                       id="user-menu-item-2"
-                      onClick={() => {
-                        setIsMobileMenuOpen(false)
-                        signOut()
-                      } }
                     >
                       Sign Out
                     </button>
@@ -248,7 +218,7 @@ function NavBar() {
             >
               Properties
             </Link>
-            {session && (
+            {isLoggedIn && (
               <Link
                 href="/properties/add"
                 className={`${
@@ -258,7 +228,7 @@ function NavBar() {
                 Add Property
               </Link>
             )}
-            {!session && (
+            {!isLoggedIn && (
               <button className="flex items-center px-3 py-2 my-4 text-white bg-gray-700 rounded-md hover:bg-gray-900 hover:text-white">
                 <span>Login or Register</span>
               </button>

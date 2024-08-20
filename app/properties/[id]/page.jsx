@@ -4,9 +4,10 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { fetchProperty } from "@/app/_utils/requests";
 import PropertyHeaderImage from "@/app/_components/PropertyHeaderImage";
+import PropertyDetails from "@/app/_components/PropertyDetails";
+import PropertyImages from "@/app/_components/PropertyImages";
 import {FaArrowLeft, FaBookmark, FaShare} from 'react-icons/fa'
 import Link from "next/link";
-import PropertyDetails from "@/app/_components/PropertyDetails";
 import Spinner from "@/app/_components/Spinner";
 
 
@@ -150,6 +151,7 @@ const Page =  (params) => {
         </div>
       </div>
     </section>
+    <PropertyImages images={property.images}/>
           
         </>
       )}
