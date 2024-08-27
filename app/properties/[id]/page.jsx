@@ -6,9 +6,12 @@ import { fetchProperty } from "@/app/_utils/requests";
 import PropertyHeaderImage from "@/app/_components/PropertyHeaderImage";
 import PropertyDetails from "@/app/_components/PropertyDetails";
 import PropertyImages from "@/app/_components/PropertyImages";
-import {FaArrowLeft, FaBookmark, FaShare} from 'react-icons/fa'
+import { FaArrowLeft, FaBookmark, FaShare } from 'react-icons/fa';
 import Link from "next/link";
 import Spinner from "@/app/_components/Spinner";
+import BookmarkButton from "@/app/_components/BookmarkButton";
+import ShareButtons from "@/app/_components/ShareButtons";
+import PropertyContactForm from "@/app/_components/PropertyContactForm";
 
 
 const Page =  (params) => {
@@ -64,89 +67,11 @@ const Page =  (params) => {
         <PropertyDetails property={property}/>
 
           {/* <!-- Sidebar --> */}
-          <aside className="space-y-4">       
-            <button
-              className="flex items-center justify-center w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600"
-            >
-              <FaBookmark className="mr-2"/> Bookmark Property
-            </button>
-            <button
-              className="flex items-center justify-center w-full px-4 py-2 font-bold text-white bg-orange-500 rounded-full hover:bg-orange-600"
-            >
-              <FaShare className="mr-2"/>Share Property
-            </button>
-
-            {/* <!-- Contact Form --> */}
-            <div className="p-6 bg-white rounded-lg shadow-md">
-              <h3 className="mb-6 text-xl font-bold">Contact Property Manager</h3>
-              <form>
-              <div className='mb-4'>
-                <label
-                  className='block mb-2 text-sm font-bold text-gray-700'
-                  htmlFor='name'
-                >
-                  Name:
-                </label>
-                <input
-                  className='w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
-                  id='name'
-                  type='text'
-                  placeholder='Enter your name'             
-                  required
-                />
-              </div>
-                <div className="mb-4">
-                  <label
-                    className="block mb-2 text-sm font-bold text-gray-700"
-                    htmlFor="email"
-                  >
-                    Email:
-                  </label>
-                  <input
-                    className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                    id="email"
-                    type="email"
-                    placeholder="Enter your email"
-                    required
-                  />
-                </div>
-                <div className='mb-4'>
-                  <label
-                    className='block mb-2 text-sm font-bold text-gray-700'
-                    htmlFor='phone'
-                  >
-                    Phone:
-                  </label>
-                  <input
-                    className='w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
-                    id='phone'
-                    type='text'
-                    placeholder='Enter your phone number'
-                  />
-                </div>
-                <div className="mb-4">
-                  <label
-                    className="block mb-2 text-sm font-bold text-gray-700"
-                    htmlFor="message"
-                  >
-                    Message:
-                  </label>
-                  <textarea
-                    className="w-full px-3 py-2 text-gray-700 border rounded shadow appearance-none h-44 focus:outline-none focus:shadow-outline"
-                    id="message"
-                    placeholder="Enter your message"
-                  ></textarea>
-                </div>
-                <div>
-                  <button
-                    className="flex items-center justify-center w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none focus:shadow-outline"
-                    type="submit"
-                  >
-                    <i className="mr-2 fas fa-paper-plane"></i> Send Message
-                  </button>
-                </div>
-              </form>
-            </div>
+          <aside className="space-y-4"> 
+          <BookmarkButton property={property}/>
+          <ShareButtons property={property}/>
+          <PropertyContactForm property={property}/>
+                
           </aside>
         </div>
       </div>

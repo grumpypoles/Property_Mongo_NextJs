@@ -9,6 +9,7 @@ import {
   FaCheck,
   FaXbox,
 } from "react-icons/fa";
+import PropertyMap from "@/app/_components/PropertyMap";
 
 function PropertyDetails({ property }) {
   return (
@@ -94,7 +95,7 @@ function PropertyDetails({ property }) {
         </ul>
       </div>
       <div className="p-6 mt-6 bg-white rounded-lg shadow-md">
-        <div id="map"></div>
+        <PropertyMap property={property}/>
       </div>
     </main>
   );

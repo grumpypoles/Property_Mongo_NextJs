@@ -77,7 +77,7 @@ async function addProperty(formData) {
   await newProperty.save();
 
   revalidatePath("/", "layout");
-  console.log(newProperty._id);
+  // console.log(newProperty._id);
   redirect(`/properties/${newProperty._id}`);
 }
 

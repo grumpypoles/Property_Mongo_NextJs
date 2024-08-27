@@ -19,6 +19,10 @@ const getRateDisplay =() =>{
 
   return (
     <div className="relative shadow-md rounded-xl">
+    <Link
+          href={`/properties/${property._id}`}
+          
+        >
     <Image
       src={property.images[0]}
       alt=""
@@ -27,6 +31,7 @@ const getRateDisplay =() =>{
       sizes="100vw"
       className='w-full h-auto rounded-t-xl'
     />
+    </Link>
     <div className="p-4">
       <div className="mb-6 text-left md:text-center lg:text-left">
         <div className="text-gray-600">{property.type}</div>

@@ -1,7 +1,10 @@
-import "@/app/_styles/globals.css";
 import NavBar from "@/app/_components/NavBar";
 import Footer from "@/app/_components/Footer";
 import AuthProvider from "@/app/_components/AuthProvider";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
+import "@/app/_styles/globals.css";
+import 'photoswipe/dist/photoswipe.css'
 
 export const metadata = {
   title: {
@@ -20,6 +23,7 @@ const RootLayout = ({ children }) => {
         <NavBar />
         <main>{children}</main>
         <Footer />
+        <ToastContainer />
       </body>
     </html>
     </AuthProvider>
